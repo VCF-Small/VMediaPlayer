@@ -9,101 +9,111 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import action_controls
+from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
+from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 
 class Ui_VMediaPlayer(object):
     def setupUi(self, VMediaPlayer):
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(
+            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//logo//vmediaplayer.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        VMediaPlayer.setWindowIcon(icon)
         VMediaPlayer.setObjectName("VMediaPlayer")
         VMediaPlayer.resize(922, 755)
         VMediaPlayer.setMinimumSize(QtCore.QSize(844, 686))
         VMediaPlayer.setStyleSheet("QSlider::groove { \n"
-"    background-color: black;\n"
-"    border: 0px solid #424242; \n"
-"    height: 10px; \n"
-"    border-radius: 4px;\n"
-"}\n"
-"\n"
-"QSlider::handle { \n"
-"    background-color: red; \n"
-"    border: 2px solid red; \n"
-"    width: 16px; \n"
-"    height: 20px; \n"
-"    line-height: 20px; \n"
-"    margin-top: -5px; \n"
-"    margin-bottom: -5px; \n"
-"    border-radius: 10px; \n"
-"}\n"
-"\n"
-"QSlider::handle:hover { \n"
-"    border-radius: 10px;\n"
-"    background-color:rgb(150, 50, 50)\n"
-"}\n"
-"QSlider::sub-page{\n"
-"    background-color: red;\n"
-"    border: 0px solid #424242; \n"
-"    height: 10px; \n"
-"    border-radius: 4px;\n"
-"}\n"
-"*{\n"
-"    \n"
-"    font: 8pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"#Tool_Box QLabel{\n"
-"\n"
-"    font: 10pt \"MS Shell Dlg 2\";\n"
-"}\n"
-"\n"
-"QGroupBox{\n"
-"    color:white;\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"    background-color:red;\n"
-"border:none;\n"
-"border-radius: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"    background-color:rgb(200, 50, 50);\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"    background-color:rgb(100, 50, 50);\n"
-"    border:none;\n"
-"}\n"
-"\n"
-"#VMediaPlayer{\n"
-"    background-color:rgb(30,30,30);\n"
-"}\n"
-"\n"
-"QLabel{\n"
-"    background-color:red;\n"
-"    border:none;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"QLabel#Video_Widget{\n"
-"    background-color:rgb(30,30,30);\n"
-"    border:none;\n"
-"    border-radius: 5px;\n"
-"}\n"
-"QMenuBar{\n"
-"    background:rgb(40,40,40);\n"
-"    color:white;\n"
-"}\n"
-"QMenu{\n"
-"    background:rgb(40,40,40);\n"
-"    color:white;\n"
-"}\n"
-"")
+                                   "    background-color: black;\n"
+                                   "    border: 0px solid #424242; \n"
+                                   "    height: 10px; \n"
+                                   "    border-radius: 4px;\n"
+                                   "}\n"
+                                   "\n"
+                                   "QSlider::handle { \n"
+                                   "    background-color: red; \n"
+                                   "    border: 2px solid red; \n"
+                                   "    width: 16px; \n"
+                                   "    height: 20px; \n"
+                                   "    line-height: 20px; \n"
+                                   "    margin-top: -5px; \n"
+                                   "    margin-bottom: -5px; \n"
+                                   "    border-radius: 10px; \n"
+                                   "}\n"
+                                   "\n"
+                                   "QSlider::handle:hover { \n"
+                                   "    border-radius: 10px;\n"
+                                   "    background-color:rgb(150, 50, 50)\n"
+                                   "}\n"
+                                   "QSlider::sub-page{\n"
+                                   "    background-color: red;\n"
+                                   "    border: 0px solid #424242; \n"
+                                   "    height: 10px; \n"
+                                   "    border-radius: 4px;\n"
+                                   "}\n"
+                                   "*{\n"
+                                   "    \n"
+                                   "    font: 8pt \"MS Shell Dlg 2\";\n"
+                                   "}\n"
+                                   "#Tool_Box QLabel{\n"
+                                   "\n"
+                                   "    font: 10pt \"MS Shell Dlg 2\";\n"
+                                   "}\n"
+                                   "\n"
+                                   "QGroupBox{\n"
+                                   "    color:white;\n"
+                                   "}\n"
+                                   "\n"
+                                   "QPushButton{\n"
+                                   "    background-color:red;\n"
+                                   "border:none;\n"
+                                   "border-radius: 5px;\n"
+                                   "}\n"
+                                   "\n"
+                                   "QPushButton:hover{\n"
+                                   "    background-color:rgb(200, 50, 50);\n"
+                                   "    border:none;\n"
+                                   "}\n"
+                                   "\n"
+                                   "QPushButton:pressed{\n"
+                                   "    background-color:rgb(100, 50, 50);\n"
+                                   "    border:none;\n"
+                                   "}\n"
+                                   "\n"
+                                   "#VMediaPlayer{\n"
+                                   "    background-color:rgb(30,30,30);\n"
+                                   "}\n"
+                                   "\n"
+                                   "QLabel{\n"
+                                   "    background-color:red;\n"
+                                   "    border:none;\n"
+                                   "    border-radius: 5px;\n"
+                                   "}\n"
+                                   "QLabel#Video_Widget{\n"
+                                   "    background-color:rgb(30,30,30);\n"
+                                   "    border:none;\n"
+                                   "    border-radius: 5px;\n"
+                                   "}\n"
+                                   "QMenuBar{\n"
+                                   "    background:rgb(40,40,40);\n"
+                                   "    color:white;\n"
+                                   "}\n"
+                                   "QMenu{\n"
+                                   "    background:rgb(40,40,40);\n"
+                                   "    color:white;\n"
+                                   "}\n"
+                                   "")
         self.centralwidget = QtWidgets.QWidget(VMediaPlayer)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.Video_Widget = QtWidgets.QLabel(self.centralwidget)
-        self.Video_Widget.setText("")
+
+        self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
+
+        self.Video_Widget = QVideoWidget(self.centralwidget)
+        # self.Video_Widget.setText("")
         self.Video_Widget.setObjectName("Video_Widget")
         self.verticalLayout.addWidget(self.Video_Widget)
         self.Layout_Widget = QtWidgets.QWidget(self.centralwidget)
@@ -117,17 +127,29 @@ class Ui_VMediaPlayer(object):
         self.Move_Backward_Button.setText("")
         self.Move_Backward_Button.setObjectName("Move_Backward_Button")
         self.horizontalLayout.addWidget(self.Move_Backward_Button)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(
+            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//backward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Move_Backward_Button.setIcon(icon)
         self.Play_Pause_Button = QtWidgets.QPushButton(self.Layout_Widget)
         self.Play_Pause_Button.setMinimumSize(QtCore.QSize(0, 30))
         self.Play_Pause_Button.setMaximumSize(QtCore.QSize(30, 16777215))
         self.Play_Pause_Button.setText("")
         self.Play_Pause_Button.setObjectName("Play_Pause_Button")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(
+            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Play_Pause_Button.setIcon(icon)
         self.horizontalLayout.addWidget(self.Play_Pause_Button)
         self.Move_Forward_Button = QtWidgets.QPushButton(self.Layout_Widget)
         self.Move_Forward_Button.setMinimumSize(QtCore.QSize(0, 30))
         self.Move_Forward_Button.setMaximumSize(QtCore.QSize(30, 16777215))
         self.Move_Forward_Button.setText("")
         self.Move_Forward_Button.setObjectName("Move_Forward_Button")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(
+            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//forward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.Move_Forward_Button.setIcon(icon)
         self.horizontalLayout.addWidget(self.Move_Forward_Button)
         self.Sequence_Slider = QtWidgets.QSlider(self.Layout_Widget)
         self.Sequence_Slider.setMinimumSize(QtCore.QSize(0, 30))
@@ -181,12 +203,14 @@ class Ui_VMediaPlayer(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTheme.menuAction())
 
+        self.setupControls()
+
         self.retranslateUi(VMediaPlayer)
         QtCore.QMetaObject.connectSlotsByName(VMediaPlayer)
 
     def retranslateUi(self, VMediaPlayer):
         _translate = QtCore.QCoreApplication.translate
-        VMediaPlayer.setWindowTitle(_translate("VMediaPlayer", "MainWindow"))
+        VMediaPlayer.setWindowTitle(_translate("VMediaPlayer", "VMediaPlayer"))
         self.Volume_Icon_Label.setText(_translate("VMediaPlayer", "Sound"))
         self.menuFile.setTitle(_translate("VMediaPlayer", "File"))
         self.menuTheme.setTitle(_translate("VMediaPlayer", "Theme"))
@@ -194,6 +218,79 @@ class Ui_VMediaPlayer(object):
         self.actionExit.setText(_translate("VMediaPlayer", "Exit"))
         self.actionLight.setText(_translate("VMediaPlayer", "Light"))
         self.actionDark.setText(_translate("VMediaPlayer", "Dark"))
+
+    def setupControls(self):
+        self.mediaPlayer.setVideoOutput(self.Video_Widget)
+        self.Play_Pause_Button.clicked.connect(self.Play_Pause)
+        self.mediaPlayer.stateChanged.connect(self.MediaStateChanged)
+        self.mediaPlayer.positionChanged.connect(self.PositionChanged)
+        self.mediaPlayer.durationChanged.connect(self.DurationChanged)
+        self.Move_Backward_Button.clicked.connect(self.MoveBackward)
+        self.Move_Forward_Button.clicked.connect(self.MoveForward)
+        self.Volume_Slider.valueChanged.connect(self.mediaPlayer.setVolume)
+        self.Sequence_Slider.setRange(0, 0)
+        self.Sequence_Slider.valueChanged.connect(self.SetPosition)
+        self.statusbar.showMessage("READY")
+        self.actionOpen.triggered.connect(self.Open)
+        self.actionExit.triggered.connect(self.Exit)
+        self.actionDark.triggered.connect(self.DarkMode)
+        self.actionLight.triggered.connect(self.LightMode)
+
+# Implementation of different methods
+    def Open(self):
+        try:
+            FileName = action_controls.Open()
+            self.mediaPlayer.setMedia(QMediaContent(
+                QtCore.QUrl.fromLocalFile(FileName)))
+            self.statusbar.showMessage(FileName)
+            # self.mediaPlayer.play()
+            self.Play_Pause()
+        except:
+            pass
+
+    def Play_Pause(self):
+        if(self.mediaPlayer.state() == 1):
+            self.mediaPlayer.pause()
+        else:
+            self.mediaPlayer.play()
+
+    def MediaStateChanged(self, state):
+        if self.mediaPlayer.state() == 1:
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(
+                "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.Play_Pause_Button.setIcon(icon)
+        else:
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(
+                "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.Play_Pause_Button.setIcon(icon)
+
+    def PositionChanged(self, position):
+        self.Sequence_Slider.setValue(position)
+
+    def DurationChanged(self, duration):
+        self.Sequence_Slider.setRange(0, duration)
+
+    def SetPosition(self, position):
+        self.mediaPlayer.setPosition(position)
+
+    def MoveBackward(self):
+        self.mediaPlayer.setPosition(
+            int(self.Sequence_Slider.sliderPosition()) - 3000)
+
+    def MoveForward(self):
+        self.mediaPlayer.setPosition(
+            int(self.Sequence_Slider.sliderPosition()) + 3000)
+
+    def DarkMode(self):
+        action_controls.DarkMode(VMediaPlayer)
+
+    def LightMode(self):
+        action_controls.LightMode(VMediaPlayer)
+
+    def Exit(self):
+        app.exit()
 
 
 if __name__ == "__main__":
