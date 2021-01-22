@@ -9,6 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import action_controls
+from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
+from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 
 class Ui_VMediaPlayer(object):
@@ -181,6 +184,8 @@ class Ui_VMediaPlayer(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTheme.menuAction())
 
+        self.setupControls()
+
         self.retranslateUi(VMediaPlayer)
         QtCore.QMetaObject.connectSlotsByName(VMediaPlayer)
 
@@ -194,6 +199,28 @@ class Ui_VMediaPlayer(object):
         self.actionExit.setText(_translate("VMediaPlayer", "Exit"))
         self.actionLight.setText(_translate("VMediaPlayer", "Light"))
         self.actionDark.setText(_translate("VMediaPlayer", "Dark"))
+
+    def setupControls(self):
+        self.actionOpen.triggered.connect(self.Open)
+        self.actionExit.triggered.connect(self.Exit)
+        self.actionDark.triggered.connect(self.DarkMode)
+        self.actionLight.triggered.connect(self.LightMode)
+
+# Implementation of different methods
+    def Open(self):
+        try:
+            FileName = action_controls.open()
+        except:
+            pass
+
+    def DarkMode(self):
+        action_controls.DarkMode(VMediaPlayer)
+
+    def LightMode(self):
+        action_controls.LightMode(VMediaPlayer)
+
+    def Exit(self):
+        app.exit()
 
 
 if __name__ == "__main__":
