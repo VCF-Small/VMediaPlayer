@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VImage</class>
+ <widget class="QWidget" name="VImage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>493</width>
+    <height>427</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VImage Installer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#VImage{
+	background:rgb(255,255,255);
+}
+
+QPushButton{
+	background:rgb(0,200,200);
+font: 25pt &quot;Impact&quot;;
+border-radius:15px;
+color:white;
+
+}
+
+QPushButton:pressed{
+	background:rgb(0,200,230);
+font: 25pt &quot;Impact&quot;;
+border-radius:15px;
+color:white;
+
+}
+QPushButton:hover{
+	background:rgb(0,200,150);
+font: 25pt &quot;Impact&quot;;
+border-radius:15px;
+color:white;
+}</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>340</y>
+     <width>171</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>Install</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>190</y>
+     <width>351</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>10</y>
+     <width>221</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 26pt &quot;Impact&quot;;</string>
+   </property>
+   <property name="text">
+    <string>VImage Installer</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>155</y>
+     <width>311</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:16pt;</string>
+   </property>
+   <property name="text">
+    <string>Filename</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

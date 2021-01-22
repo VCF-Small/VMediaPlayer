@@ -129,7 +129,7 @@ class Ui_VMediaPlayer(object):
         self.horizontalLayout.addWidget(self.Move_Backward_Button)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
-            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//backward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            "/VMediaPlayer/backward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Move_Backward_Button.setIcon(icon)
         self.Play_Pause_Button = QtWidgets.QPushButton(self.Layout_Widget)
         self.Play_Pause_Button.setMinimumSize(QtCore.QSize(0, 30))
@@ -138,7 +138,7 @@ class Ui_VMediaPlayer(object):
         self.Play_Pause_Button.setObjectName("Play_Pause_Button")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
-            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            "/VMediaPlayer/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Play_Pause_Button.setIcon(icon)
         self.horizontalLayout.addWidget(self.Play_Pause_Button)
         self.Move_Forward_Button = QtWidgets.QPushButton(self.Layout_Widget)
@@ -148,7 +148,7 @@ class Ui_VMediaPlayer(object):
         self.Move_Forward_Button.setObjectName("Move_Forward_Button")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(
-            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//forward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            "/VMediaPlayer/forward.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Move_Forward_Button.setIcon(icon)
         self.horizontalLayout.addWidget(self.Move_Forward_Button)
         self.Sequence_Slider = QtWidgets.QSlider(self.Layout_Widget)
@@ -158,8 +158,9 @@ class Ui_VMediaPlayer(object):
         self.horizontalLayout.addWidget(self.Sequence_Slider)
         self.Volume_Icon_Label = QtWidgets.QLabel(self.Layout_Widget)
         self.Volume_Icon_Label.setMinimumSize(QtCore.QSize(0, 30))
-        self.Volume_Icon_Label.setMaximumSize(QtCore.QSize(50, 16777215))
+        self.Volume_Icon_Label.setMaximumSize(QtCore.QSize(50, 50))
         self.Volume_Icon_Label.setObjectName("Volume_Icon_Label")
+        self.Volume_Icon_Label.setPixmap(QtGui.QPixmap("/VMediaPlayer/volume.png"))
         self.horizontalLayout.addWidget(self.Volume_Icon_Label)
         self.Volume_Slider = QtWidgets.QSlider(self.Layout_Widget)
         self.Volume_Slider.setMinimumSize(QtCore.QSize(100, 30))
@@ -202,7 +203,6 @@ class Ui_VMediaPlayer(object):
         self.menuTheme.addAction(self.actionDark)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuTheme.menuAction())
-
         self.setupControls()
 
         self.retranslateUi(VMediaPlayer)
@@ -211,13 +211,29 @@ class Ui_VMediaPlayer(object):
     def retranslateUi(self, VMediaPlayer):
         _translate = QtCore.QCoreApplication.translate
         VMediaPlayer.setWindowTitle(_translate("VMediaPlayer", "VMediaPlayer"))
-        self.Volume_Icon_Label.setText(_translate("VMediaPlayer", "Sound"))
+        VMediaPlayer.setWindowIcon(QtGui.QIcon("/VMediaPlayer/vmediaplayer.png"))
+        #self.Volume_Icon_Label.setText(_translate("VMediaPlayer", "Sound"))
         self.menuFile.setTitle(_translate("VMediaPlayer", "File"))
         self.menuTheme.setTitle(_translate("VMediaPlayer", "Theme"))
         self.actionOpen.setText(_translate("VMediaPlayer", "Open"))
+        self.actionOpen.setShortcut(QtGui.QKeySequence.Open)
         self.actionExit.setText(_translate("VMediaPlayer", "Exit"))
+        self.actionExit.setShortcut("Ctrl+Q")
         self.actionLight.setText(_translate("VMediaPlayer", "Light"))
+        self.actionLight.setShortcut("Ctrl+L")
         self.actionDark.setText(_translate("VMediaPlayer", "Dark"))
+        self.actionDark.setShortcut("Ctrl+D")
+        self.Play_Pause_Button.setShortcut("Space")
+        self.Move_Forward_Button.setShortcut(QtGui.QKeySequence.MoveToNextChar)
+        self.Move_Backward_Button.setShortcut(QtGui.QKeySequence.MoveToPreviousChar)
+        self.volu = QtWidgets.QPushButton()
+        self.vold = QtWidgets.QPushButton()
+        self.volu.clicked.connect(self.Vol_Up)
+        self.vold.clicked.connect(self.Vol_Down)
+        self.volu.setShortcut("Up")
+        self.vold.setShortcut("Down")
+        self.statusbar.setStyleSheet("color:white")
+        
 
     def setupControls(self):
         self.mediaPlayer.setVideoOutput(self.Video_Widget)
@@ -229,7 +245,7 @@ class Ui_VMediaPlayer(object):
         self.Move_Forward_Button.clicked.connect(self.MoveForward)
         self.Volume_Slider.valueChanged.connect(self.mediaPlayer.setVolume)
         self.Sequence_Slider.setRange(0, 0)
-        self.Sequence_Slider.valueChanged.connect(self.SetPosition)
+        self.Sequence_Slider.sliderReleased.connect(self.SetPosition)
         self.statusbar.showMessage("READY")
         self.actionOpen.triggered.connect(self.Open)
         self.actionExit.triggered.connect(self.Exit)
@@ -237,16 +253,18 @@ class Ui_VMediaPlayer(object):
         self.actionLight.triggered.connect(self.LightMode)
 
 # Implementation of different methods
+
     def Open(self):
         try:
             FileName = action_controls.Open()
             self.mediaPlayer.setMedia(QMediaContent(
                 QtCore.QUrl.fromLocalFile(FileName)))
             self.statusbar.showMessage(FileName)
-            # self.mediaPlayer.play()
-            self.Play_Pause()
+            self.mediaPlayer.play()
+            
         except:
             pass
+
 
     def Play_Pause(self):
         if(self.mediaPlayer.state() == 1):
@@ -258,12 +276,12 @@ class Ui_VMediaPlayer(object):
         if self.mediaPlayer.state() == 1:
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap(
-                "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                "/VMediaPlayer/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.Play_Pause_Button.setIcon(icon)
         else:
             icon = QtGui.QIcon()
             icon.addPixmap(QtGui.QPixmap(
-                "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                "/VMediaPlayer/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.Play_Pause_Button.setIcon(icon)
 
     def PositionChanged(self, position):
@@ -272,8 +290,8 @@ class Ui_VMediaPlayer(object):
     def DurationChanged(self, duration):
         self.Sequence_Slider.setRange(0, duration)
 
-    def SetPosition(self, position):
-        self.mediaPlayer.setPosition(position)
+    def SetPosition(self):
+        self.mediaPlayer.setPosition(self.Sequence_Slider.value())
 
     def MoveBackward(self):
         self.mediaPlayer.setPosition(
@@ -282,6 +300,10 @@ class Ui_VMediaPlayer(object):
     def MoveForward(self):
         self.mediaPlayer.setPosition(
             int(self.Sequence_Slider.sliderPosition()) + 3000)
+    def Vol_Up(self):
+        self.Volume_Slider.setValue(self.Volume_Slider.value() + 3)
+    def Vol_Down(self):
+        self.Volume_Slider.setValue(self.Volume_Slider.value()  - 3)
 
     def DarkMode(self):
         action_controls.DarkMode(VMediaPlayer)
@@ -291,7 +313,6 @@ class Ui_VMediaPlayer(object):
 
     def Exit(self):
         app.exit()
-
 
 if __name__ == "__main__":
     import sys

@@ -16,6 +16,6 @@ def LightMode(window):
 
 def Open():
     src_path, _ = QFileDialog.getOpenFileName(
-        filter="Media (*.mp4  *.mkv *.flv *.ts *.mts *.avi)")
+        filter="Media (*.mp4  *.mkv *.flv *.ts *.mts *.avi *.mp3 *.wav )")
     if(src_path != "" or src_path != None):
         return(src_path)
