@@ -16,10 +16,6 @@ from PyQt5.QtMultimediaWidgets import QVideoWidget
 
 class Ui_VMediaPlayer(object):
     def setupUi(self, VMediaPlayer):
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(
-            "C://Users//Ankit//Documents//GitHub//VMediaPlayer//src//icons//logo//vmediaplayer.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        VMediaPlayer.setWindowIcon(icon)
         VMediaPlayer.setObjectName("VMediaPlayer")
         VMediaPlayer.resize(922, 755)
         VMediaPlayer.setMinimumSize(QtCore.QSize(844, 686))
