@@ -34,6 +34,10 @@ A simple media player for both audio and video files and simple editing. Which i
 ## Screenshots
 ***
 
+![](https://user-images.githubusercontent.com/60814508/145612891-f614c4b0-2937-4428-ba54-6b01afd46dd8.png)
+
+
+
 ## Here's the list of devs:
 ***
 *** 
