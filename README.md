@@ -24,7 +24,7 @@ A simple media player for both audio and video files and simple editing. Which i
     Just run the main.py file from the folder.
 
 
-## Requirement
+## Dependencies 
 ***
 
 1. Python 3.6 or above
